@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.contrib import admin
+from .models import *
+# Register your models here.
+admin.site.register(Slot)
+admin.site.register(Course)
+admin.site.register(Day)
+admin.site.register(Table)
+admin.site.register(Student)
+admin.site.register(Professor)
+admin.site.register(OfficeHours)

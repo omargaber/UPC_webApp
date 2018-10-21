@@ -1,0 +1,42 @@
+{% load static %}
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.7/css/select.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <script type="text/javascript" src="{% static 'js/template.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Viga" rel="stylesheet">
+    <title>UPC User Platform</title>
+
+</head>
+
+<body>
+    <header role="banner">
+        <div id="cd-logo"><a href="/teachersupport/"><img src="{% static 'img/upc.png' %}" alt="Logo" style="width:50px;height:50px;"></a></div>
+
+        <nav class=" main-nav ">
+            <ul>
+                {% if not log %}
+                <li><a class="cd-signin " href="{% url 'teachersupport:form'%} ">Sign in/Register</a></li>
+
+                {% else %}
+                <li><a class="cd-signin " href="{% url 'teachersupport:logout'%} ">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    {% block body %} {% endblock %}
+</body>

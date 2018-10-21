@@ -1,0 +1,79 @@
+{% extends 'base.html'%} {% load static %} {% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            {% if request.session.logged_type == "Student" %}
+            <button type="button" class="btn btn-primary loginbutton" data-toggle="modal" data-target="#officeHoursModal">
+                Request Office Hours
+            </button>
+
+            <div class="modal" id="officeHoursModal" tabindex="-1" role="dialog" aria-labelledby="officeHoursModal" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Request Office Hours</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/teachersupport/requestofficehours/" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="prof">Professor</label>
+                                    <select name="professor">
+                                        {% for item in request.session.professors %}
+                                        <h4>
+                                            <option value="{{item}}">{{item}}</option>
+                                        </h4>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="hidden" value="{{request.session.member_id}}" name="student">
+                                </div>
+
+                                <br/>
+
+                                <button type="submit" class="btn btn-primary">Request</button>
+                            </form>
+
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <button type="button" class="btn btn-primary loginbutton" data-toggle="modal" data-target="#profModal">
+                View Student Requests
+            </button>
+
+            <div class="modal" id="profModal" tabindex="-1" role="dialog" aria-labelledby="profModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">View Requests</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {% for student in request.session.students_in_need %}
+                                    <label>{{student}}</label>
+                                    {% endfor %}
+
+                                </div>
+
+                                <br/>
+
+                                <button type="submit" class="btn btn-primary">Dismiss</button>
+                            </form>
+
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endblock %}
+        </div>

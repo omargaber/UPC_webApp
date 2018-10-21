@@ -1,0 +1,166 @@
+{% extends 'base.html'%} {% load static %} {% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <button type="button" class="btn btn-primary loginbutton" data-toggle="modal" data-target="#studentModal">
+                Student Login
+            </button>
+            <button type="button" class="btn btn-primary signupbutton" data-toggle="modal" data-target="#profModal">
+                Professor Login
+            </button>
+        </div>
+    </div>
+    <div class="modal" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/teachersupport/login/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter E-mail address">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
+                        </div>
+
+                        <br/>
+
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="profModal" tabindex="-1" role="dialog" aria-labelledby="profModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/teachersupport/proflogin/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter E-mail address">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
+                        </div>
+
+                        <br/>
+
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% comment %}
+<div class="container ">
+
+    <header style="padding-top: 100px; ">
+        {% if errors %}
+        <h1>Invalid Username/Password</h1>
+        {% endif %} {% if wrong %}
+        <h1>Invalid Username/Password</h1>
+        {% endif %}
+    </header>
+    <section>
+        <div id="container_demo ">
+            <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+            <a class="hiddenanchor " id="toregister "></a>
+            <a class="hiddenanchor " id="tologin "></a>
+            <div id="wrapper ">
+                <div id="login " class="animate form ">
+                    <form action="{% url 'teachersupport:login'%} " autocomplete="on " method="POST ">
+                        {% csrf_token %}
+                        <h1>Log in</h1>
+                        <p>
+                            <label for="email " class="email " data-icon="u "> Your E-mail </label>
+                            <input id="email " name="email " required="required " type="email
+    " placeholder="mymail@me.com " />
+                        </p>
+                        <p>
+                            <label for="password " class="youpasswd " data-icon="p "> Your password </label>
+                            <input id="password " name="password " required="required " type="password
+    " placeholder="eg. X8df!90EO " />
+                        </p>
+                        <p class="keeplogin ">
+                            <input type="checkbox " name="loginkeeping " id="loginkeeping " value="loginkeeping " />
+                            <label for="loginkeeping ">Keep me logged in</label>
+                        </p>
+                        <p class="login button ">
+                            <input type="submit " value="Login " />
+                        </p>
+                        <p class="change_link ">
+                            Not a member yet ?
+                            <a href="#toregister " class="to_register ">Join us</a>
+                        </p>
+                    </form>
+                </div>
+
+                <div id="register " class="animate form ">
+                    <form action="{% url 'teachersupport:signup'%} " autocomplete="on " method="POST
+    " enctype="multipart/form-data ">
+                        {% csrf_token %}
+                        <h1> Sign up </h1>
+                        <p>
+                            <label for="name " class="uname " data-icon="u ">Name</label>
+                            <input id="name " name="name " required="required " type="text
+    " placeholder="John Doe " />
+                        </p>
+                        <p>
+                            <label for="email " class="youmail " data-icon="e ">E-Mail</label>
+                            <input id="email " name="email " required="required " type="email
+    " placeholder="mysupermail@mail.com " />
+                        </p>
+                        <p>
+                            <label for="passwordsignup " class="youpasswd " data-icon="p ">Your password </label>
+                            <input id="passwordsignup " name="passwordsignup " required="required " type="password
+    " placeholder="eg. X8df!90EO " />
+                        </p>
+                        <p>
+                            <label for="passwordsignup_confirm " class="youpasswd " data-icon="p ">Please confirm your password
+                            </label>
+                            <input id="passwordsignup_confirm " name="passwordsignup_confirm " required="required
+    " type="password " placeholder="eg. X8df!90EO " />
+                        </p>
+                        <p>
+                            <label for="img " class="youpasswd " data-icon="i ">Upload your img </label>
+                            <input id="img " name="img " required="required " type="file " placeholder=".... " />
+                        </p>
+                        <p class="signin button ">
+                            <input type="submit " value="Sign up " />
+                        </p>
+                        <p class="change_link ">
+                            Already a member ?
+                            <a href="#tologin " class="to_register "> Go and log in </a>
+                        </p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div> {% endcomment %} {% endblock %}

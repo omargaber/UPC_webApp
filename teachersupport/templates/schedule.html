@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>First</th>
+                        <th>Second</th>
+                        <th>Third</th>
+                        <th>Fourth</th>
+                        <th>Fifth</th>
+                        <th>Sixth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sunday</td>
+                        <td>a</td>
+                        <td>b</td>
+                        <td>c</td>
+                        <td>d</td>
+                        <td>e</td>
+                        <td>e</td>
+                    </tr>
+                    <tr>
+                        <td>Monday</td>
+                        <td>f</td>
+                        <td>g</td>
+                        <td>h</td>
+                        <td>i</td>
+                        <td>j</td>
+                        <td>e</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>e</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>e</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>k</td>
+                        <td>e</td>
+                    </tr>
+                    <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "columnDefs": [
+                { "orderable": false, "targets": 0 }
+            ]
+        });
+    });
+</script> {% endblock %}
