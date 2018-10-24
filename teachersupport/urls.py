@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^form/$', views.form, name='form'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
-    url(r'^requestofficehours/$', views.requestofficehours, name='requestofficehours')
+    url(r'^requestofficehours/$', views.requestofficehours,
+        name='requestofficehours'),
+    url(r'^respondtorequests/$', views.respondtorequests, name='respondtorequests')
     # url(r'^booksuppoty/$', views.bookSupport, name='booksupport')
 ]

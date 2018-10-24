@@ -51,11 +51,20 @@ def studentlogin(request):
                 usr.save()
                 request.session['member_id'] = usr.id
                 request.session['logged_type'] = usr.type
+                prof_response = TimeSet.objects.all()
+                # all_responses = []
+                # for obj in prof_response:
+                #     temp_d = {}
+                #     temp_d[obj.professor.id] = {
+                #         'name': obj.professor.name, 'date_set': obj.date_set, 'time_set': obj.date.set}
+                #     all_responses.append(temp_d)
+
                 profs = []
                 professors = Professor.objects.all()
                 for i in range(0, len(professors)):
                     profs.append(professors[i].name)
                 request.session['professors'] = profs
+                # request.session['prof_responses'] = all_responses
 
                 request.session.set_expiry(0)
                 return HttpResponseRedirect(reverse('teachersupport:dashboard'))
@@ -144,6 +153,17 @@ def requestofficehours(request):
             student_id=student_id, professor_needed=professor_needed, professor=usr
         )
         return HttpResponseRedirect(reverse('teachersupport:dashboard'))
+
+
+def respondtorequests(request):
+    date_set = request.POST.get('date', '')
+    time_set = request.POST.get('time', '')
+    professor = Professor.objects.get(id=request.session['member_id'])
+    professor_id = professor.id
+
+    prof_response = TimeSet.objects.create(
+        date_set=date_set, time_set=time_set, professor=professor)
+    return HttpResponseRedirect(reverse('teachersupport:dashboard'))
 
 
 def signup(request):

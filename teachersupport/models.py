@@ -30,8 +30,14 @@ class OfficeHours(models.Model):
     professor_needed = models.CharField(max_length=100)
     professor = models.ForeignKey(Professor)
 
+
+class TimeSet(models.Model):
+    date_set = models.DateField()
+    time_set = models.TimeField()
+    professor = models.ForeignKey(Professor)
+
     def __str__(self):
-        """Unicode representation of Request."""
+        """Unicode representation of Response."""
         pass
 
 

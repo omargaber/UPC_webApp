@@ -8,6 +8,10 @@
                 Request Office Hours
             </button>
 
+            <button type="button" class="btn btn-primary signupbutton" data-toggle="modal" data-target="#viewModal">
+                View Responses
+            </button>
+
             <div class="modal" id="officeHoursModal" tabindex="-1" role="dialog" aria-labelledby="officeHoursModal" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -41,9 +45,42 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">View Responses</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {% for student in request.session.all_responses %}
+                                    <label>{{student}}</label>
+                                    {% endfor %}
+
+                                </div>
+
+                                <br/>
+
+                                <button type="submit" class="btn btn-primary">Dismiss</button>
+                            </form>
+
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% else %}
             <button type="button" class="btn btn-primary loginbutton" data-toggle="modal" data-target="#profModal">
                 View Student Requests
+            </button>
+
+            <button type="button" class="btn btn-primary signupbutton" data-toggle="modal" data-target="#respond">
+                Respond To Student Requests
             </button>
 
             <div class="modal" id="profModal" tabindex="-1" role="dialog" aria-labelledby="profModalTitle" aria-hidden="true">
@@ -73,7 +110,42 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="modal" id="respond" tabindex="-1" role="dialog" aria-labelledby="respondTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Set Time</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/teachersupport/respondtorequests/" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="date">Date</label>
+                                    <input type="date" name="date">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="time">Time</label>
+                                    <input type="time" name="time" min="9:00" max="16:00" required>
+
+                                </div>
+
+                                <br/>
+
+                                <button type="submit" class="btn btn-primary">Set TIme</button>
+                            </form>
+
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
                 {% endif %}
             </div>
+
+
             {% endblock %}
         </div>
